@@ -25,32 +25,17 @@ void delayUs(long int us);
 #define DELAY_INIT2 \
     long int _tick = 0, _tickErr;
 
-#define DELAY_US2(us, err1, err2, err3, err4) \
-    _tickErr = getTickUs() - _tick;           \
-    if (us > _tickErr)                        \
-    {                                         \
-        _tickErr = us - _tickErr;             \
-        if (_tickErr > err1)                  \
-        {                                     \
-            delayUs(_tickErr - err1);         \
-            continue;                         \
-        }                                     \
-        else if (_tickErr > err2)             \
-        {                                     \
-            delayUs(_tickErr - err2);         \
-            continue;                         \
-        }                                     \
-        else if (_tickErr > err3)             \
-        {                                     \
-            delayUs(_tickErr - err3);         \
-            continue;                         \
-        }                                     \
-        else if (_tickErr > err4)             \
-        {                                     \
-            delayUs(_tickErr - err4);         \
-            continue;                         \
-        }                                     \
-    }                                         \
+#define DELAY_US2(us, err)             \
+    _tickErr = getTickUs() - _tick;    \
+    if (_tickErr > 0 && us > _tickErr) \
+    {                                  \
+        _tickErr = us - _tickErr;      \
+        if (_tickErr > err)            \
+        {                              \
+            delayUs(_tickErr / 2);     \
+            continue;                  \
+        }                              \
+    }                                  \
     _tick = getTickUs();
 
 // 获取系统tick可以作为us时长参考

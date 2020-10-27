@@ -2,13 +2,13 @@
 
 int main(void)
 {
-    // DELAY_INIT;
+    //DELAY_INIT;
     DELAY_INIT2;
 
     while (1)
     {
-        // DELAY_US(499000);
-        DELAY_US2(500000, 10000, 5000, 1000, 200);//4级逼近
+        //DELAY_US(500000);
+        DELAY_US2(500000, 50);
 
         showTickUs(500000);
 
