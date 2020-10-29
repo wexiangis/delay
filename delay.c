@@ -70,7 +70,7 @@ void showTickUs(int targetUs)
         err = (int)((tv.tv_sec - tv_old.tv_sec) * 1000000 + (tv.tv_usec - tv_old.tv_usec));
         err2 = err - targetUs;
     }
-    printf("[ %02d:%02d:%02d:%03d:%03d -- %02d:%03d:%03d] %5d\r\n",
+    printf("[%02d:%02d:%02d:%03d:%03d -- %02d:%03d:%03d] %5d\r\n",
            hour, min, sec, ms, us, err / 1000000, err % 1000000 / 1000, err % 1000, err2);
     memcpy(&tv_old, &tv, sizeof(struct timeval));
 }
