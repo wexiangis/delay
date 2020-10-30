@@ -42,7 +42,7 @@ void delayUs(long int us);
 long int getTickUs(void);
 
 // 打印时间戳
-void showTickUs(long int targetUs);
+void showTickUs(long int targetDelayUs);
 
 // ----- 假装在干活 -----
 

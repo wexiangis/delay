@@ -23,7 +23,7 @@ void delayUs(long int us)
 // 固定时长的干活
 void worker(int us)
 {
-    delayUs(us);
+    usleep(us);
 }
 
 // 随机时长的干活[1, us]之间
@@ -39,7 +39,7 @@ void workerRandom(int us)
     //取一个[1, us]之间的随机数
     randUs = rand() % us + 1;
     //随机延时一段时间
-    delayUs(randUs);
+    usleep(randUs);
 }
 
 // 获取系统tick可以作为us时长参考
@@ -50,8 +50,8 @@ long int getTickUs(void)
     return tv.tv_sec * 1000000u + tv.tv_usec;
 }
 
-// 打印时间戳
-void showTickUs(int targetUs)
+// 指定目标延时间隔, 打印时间戳
+void showTickUs(int targetDelayUs)
 {
     static struct timeval tv_old = {0};
     struct timeval tv = {0};
@@ -68,7 +68,7 @@ void showTickUs(int targetUs)
         err = err2 = 0;
     else {
         err = (int)((tv.tv_sec - tv_old.tv_sec) * 1000000 + (tv.tv_usec - tv_old.tv_usec));
-        err2 = err - targetUs;
+        err2 = err - targetDelayUs;
     }
     printf("[%02d:%02d:%02d:%03d:%03d -- %02d:%03d:%03d] %5d\r\n",
            hour, min, sec, ms, us, err / 1000000, err % 1000000 / 1000, err % 1000, err2);
