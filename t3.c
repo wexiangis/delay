@@ -15,21 +15,18 @@ void busy(void)
 
 int main(void)
 {
-    // DELAY_INIT;
-    DELAY_INIT2;
+    DELAY_INIT;
 
     pthread_t ph;
     pthread_create(&ph, NULL, (void*)&busy, NULL);
 
     while (1)
     {
-        // DELAY_US(499700);
-        DELAY_US2(500000, 50);
-
+        DELAY_US(499950);
         showTickUs(500000);
 
+        //working
         workerRandom(499000);
-        // worker(499000);
     }
     return 0;
 }

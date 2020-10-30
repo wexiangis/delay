@@ -17,7 +17,7 @@ void delayUs(long int us);
 #define DELAY_US(us)                             \
     _tick2 = getTickUs();                        \
     if (_tick2 > _tick1 && _tick2 - _tick1 < us) \
-        delayUs(us - (_tick2 - _tick1));         \
+        sleepUs(us - (_tick2 - _tick1));         \
     _tick1 = getTickUs();
 
 // ----- 逐级逼近式延时 -----
@@ -32,7 +32,7 @@ void delayUs(long int us);
         _tickErr = us - _tickErr;      \
         if (_tickErr > err)            \
         {                              \
-            delayUs(_tickErr / 2);     \
+            sleepUs(_tickErr / 2);     \
             continue;                  \
         }                              \
     }                                  \
